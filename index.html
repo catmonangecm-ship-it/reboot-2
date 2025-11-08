@@ -218,25 +218,6 @@
             font-weight: bold;
         }
 
-        .pending-tx {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            animation: pulse 2s infinite;
-        }
-
-        .pending-tx h4 {
-            margin-bottom: 10px;
-        }
-
-        .tx-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
         .history-item {
             background: #f8f9fa;
             padding: 15px;
@@ -286,15 +267,6 @@
             }
         }
 
-        @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(245, 87, 108, 0.5);
-            }
-            50% {
-                box-shadow: 0 0 40px rgba(245, 87, 108, 0.8);
-            }
-        }
-
         .alert {
             padding: 15px;
             border-radius: 10px;
@@ -306,12 +278,6 @@
             background: #d1ecf1;
             color: #0c5460;
             border: 1px solid #bee5eb;
-        }
-
-        .alert-warning {
-            background: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffeaa7;
         }
 
         .alert-success {
@@ -334,136 +300,6 @@
             color: #000;
         }
 
-        .network-eth {
-            background: #627eea;
-            color: white;
-        }
-
-        .dex-card {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-left: 5px solid #667eea;
-            position: relative;
-            transition: all 0.3s;
-        }
-
-        .dex-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .dex-card.best {
-            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-            border-left-color: #28a745;
-            animation: bestGlow 2s infinite;
-        }
-
-        @keyframes bestGlow {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(40, 167, 69, 0.3);
-            }
-            50% {
-                box-shadow: 0 0 30px rgba(40, 167, 69, 0.6);
-            }
-        }
-
-        .dex-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .dex-name {
-            font-size: 1.3em;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .dex-icon {
-            font-size: 1.5em;
-        }
-
-        .best-badge {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: bold;
-            animation: pulse 2s infinite;
-        }
-
-        .dex-details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .dex-detail-item {
-            background: white;
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        .dex-detail-label {
-            font-size: 0.85em;
-            color: #666;
-            margin-bottom: 5px;
-        }
-
-        .dex-detail-value {
-            font-size: 1.1em;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .loading-spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(102, 126, 234, 0.3);
-            border-radius: 50%;
-            border-top-color: #667eea;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .comparison-actions {
-            margin-top: 20px;
-            display: flex;
-            gap: 10px;
-        }
-
-        .debug-badge {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 0.9em;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-            z-index: 1000;
-        }
-
-        .debug-badge:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        }
-
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 1.8em;
@@ -482,14 +318,14 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>ðŸ¤– DCA Trading Bot</h1>
+            <h1>🤖 DCA Trading Bot</h1>
             <p>Investissement automatique avec MetaMask</p>
         </div>
 
         <div class="wallet-section">
             <div class="wallet-info">
                 <div>
-                    <span id="walletStatus" class="status disconnected">Non connectÃ©</span>
+                    <span id="walletStatus" class="status disconnected">Non connecté</span>
                     <span id="networkBadge" class="network-badge" style="display: none;"></span>
                 </div>
                 <div>
@@ -506,25 +342,24 @@
         <div id="connectedContent" style="display: none;">
             <div class="grid">
                 <div class="card">
-                    <h2>âš™ï¸ Configuration DCA</h2>
+                    <h2>⚙️ Configuration DCA</h2>
                     
                     <div class="form-group">
-                        <label>RÃ©seau</label>
+                        <label>Réseau</label>
                         <select id="networkSelect" onchange="updateNetwork()">
                             <option value="bsc">Binance Smart Chain (BSC)</option>
-                            <option value="eth">Ethereum Mainnet</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label>Crypto Ã  acheter</label>
+                        <label>Crypto à acheter</label>
                         <select id="cryptoSelect" onchange="updateCryptoInfo()">
-                            <option value="">-- SÃ©lectionner une crypto --</option>
+                            <option value="">-- Sélectionner une crypto --</option>
                         </select>
                     </div>
 
                     <div class="alert alert-info" id="cryptoInfo" style="display: none;">
-                        ðŸ’¡ <span id="cryptoDescription"></span>
+                        💡 <span id="cryptoDescription"></span>
                     </div>
 
                     <div class="form-group">
@@ -548,29 +383,29 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Slippage tolÃ©rÃ© (%)</label>
+                        <label>Slippage toléré (%)</label>
                         <input type="number" id="slippageInput" value="1" min="0.1" max="50" step="0.1">
                     </div>
 
                     <button id="buyNowBtn" class="btn btn-primary" onclick="buyNowManual()" style="width: 100%; margin-top: 10px;">
-                        âš¡ Acheter Maintenant
+                        ⚡ Acheter Maintenant
                     </button>
 
                     <button id="startDcaBtn" class="btn btn-success" onclick="startDCA()" style="width: 100%; margin-top: 10px;">
-                        ðŸš€ DÃ©marrer le DCA Auto
+                        🚀 Démarrer le DCA Auto
                     </button>
 
                     <button id="stopDcaBtn" class="btn btn-danger" onclick="stopDCA()" style="width: 100%; margin-top: 10px; display: none;">
-                        â¸ï¸ ArrÃªter le DCA
+                        ⏸️ Arrêter le DCA
                     </button>
                 </div>
 
                 <div class="card">
-                    <h2>ðŸ“Š Statut DCA</h2>
+                    <h2>📊 Statut DCA</h2>
                     
                     <div class="info-box">
                         <h3>Configuration actuelle</h3>
-                        <p><strong>Action:</strong> Achat de BNB avec USDT</p>
+                        <p><strong>Action:</strong> Achat via PancakeSwap 🥞</p>
                         <p><strong>Montant:</strong> <span id="currentAmount">-</span></p>
                         <p><strong>Intervalle:</strong> <span id="currentInterval">-</span></p>
                         <p><strong>Statut:</strong> <span id="dcaStatus">Inactif</span></p>
@@ -579,11 +414,11 @@
                     <div class="dca-status">
                         <h3>Statistiques</h3>
                         <div class="stat-item">
-                            <span class="stat-label">Prochaine exÃ©cution:</span>
+                            <span class="stat-label">Prochaine exécution:</span>
                             <span class="stat-value" id="nextExecution">-</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-label">Achats effectuÃ©s:</span>
+                            <span class="stat-label">Achats effectués:</span>
                             <span class="stat-value" id="totalBuys">0</span>
                         </div>
                         <div class="stat-item">
@@ -591,28 +426,15 @@
                             <span class="stat-value" id="totalInvested">0 USDT</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-label">Tokens reÃ§us:</span>
+                            <span class="stat-label">Tokens reçus:</span>
                             <span class="stat-value" id="totalTokens">0</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="card" id="pendingSection" style="display: none;">
-                <h2>â³ Transaction en attente</h2>
-                <div id="pendingTransactions"></div>
-            </div>
-
-            <div class="card" id="comparisonSection" style="display: none;">
-                <h2>ðŸ’± Comparaison des agrÃ©gateurs</h2>
-                <div class="alert alert-info">
-                    âš¡ Recherche du meilleur prix sur tous les agrÃ©gateurs...
-                </div>
-                <div id="dexComparison"></div>
-            </div>
-
             <div class="card">
-                <h2>ðŸ“œ Historique</h2>
+                <h2>📜 Historique</h2>
                 <div id="historyContainer">
                     <div class="alert alert-info">
                         Aucune transaction pour le moment
@@ -622,12 +444,7 @@
         </div>
     </div>
 
-    <div class="debug-badge" onclick="toggleDebugInfo()">
-        ðŸ” Logs de debug
-    </div>
-
     <script>
-        let web3;
         let userAccount;
         let currentNetwork = 'bsc';
         let dcaInterval;
@@ -646,215 +463,31 @@
             }
         };
 
-        // Adresses des contrats sur BSC
-        const USDT_ADDRESS = '0x55d398326f99059fF775485246999027B3197955'; // USDT sur BSC
-        const WBNB_ADDRESS = '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c'; // WBNB sur BSC
+        const USDT_ADDRESS = '0x55d398326f99059fF775485246999027B3197955';
+        const WBNB_ADDRESS = '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c';
         
-        // AgrÃ©gateurs et DEX sur BSC (adresses vÃ©rifiÃ©es)
         const DEX_AGGREGATORS = {
             pancakeswap: {
                 name: 'PancakeSwap',
                 router: '0x10ED43C718714eb63d5aA57B78B54704E256024E',
-                icon: 'ðŸ¥ž',
+                icon: '🥞',
                 color: '#d1884f',
-                enabled: true
-            },
-            biswap: {
-                name: 'Biswap',
-                router: '0x3a6d8cA21D1CF76F653A67577FA0D27453350dD8',
-                icon: 'ðŸ¦Ž',
-                color: '#1FC7D4',
-                enabled: true
-            },
-            apeswap: {
-                name: 'ApeSwap',
-                router: '0xcF0feBd3f17CEf5b47b0cD257aCf6025c5BFf3b7',
-                icon: 'ðŸ¦',
-                color: '#A16552',
-                enabled: true
-            },
-            babyswap: {
-                name: 'BabySwap',
-                router: '0x325E343f1dE602396E256B67eFd1F61C3A6B38Bd',
-                icon: 'ðŸ‘¶',
-                color: '#FF6B9D',
-                enabled: true
-            },
-            mdex: {
-                name: 'MDEX',
-                router: '0x7DAe51BD3E3376B8c7c4900E9107f12Be3AF1bA8',
-                icon: 'ðŸŒŠ',
-                color: '#4A9EFF',
                 enabled: true
             }
         };
 
-        // Top 100 des cryptos disponibles sur BSC
         const TOP_CRYPTOS = [
-            // Top 10
             { symbol: 'BNB', name: 'BNB', address: WBNB_ADDRESS, rank: 1, description: 'Binance Coin - Token natif de Binance' },
-            { symbol: 'BTC', name: 'Bitcoin', address: '0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c', rank: 2, description: 'Bitcoin - La premiÃ¨re crypto-monnaie' },
+            { symbol: 'BTC', name: 'Bitcoin', address: '0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c', rank: 2, description: 'Bitcoin - La première crypto-monnaie' },
             { symbol: 'ETH', name: 'Ethereum', address: '0x2170Ed0880ac9A755fd29B2688956BD959F933F8', rank: 3, description: 'Ethereum - Plateforme de smart contracts' },
-            { symbol: 'USDT', name: 'Tether', address: USDT_ADDRESS, rank: 4, description: 'Tether - Stablecoin indexÃ© sur le dollar' },
-            { symbol: 'USDC', name: 'USD Coin', address: '0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d', rank: 5, description: 'USD Coin - Stablecoin rÃ©gulÃ©' },
-            { symbol: 'XRP', name: 'Ripple', address: '0x1D2F0da169ceB9fC7B3144628dB156f3F6c60dBE', rank: 6, description: 'Ripple - RÃ©seau de paiement international' },
-            { symbol: 'SOL', name: 'Solana', address: '0x570A5D26f7765Ecb712C0924E4De545B89fD43dF', rank: 7, description: 'Solana - Blockchain haute performance' },
+            { symbol: 'USDC', name: 'USD Coin', address: '0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d', rank: 5, description: 'USD Coin - Stablecoin régulé' },
+            { symbol: 'XRP', name: 'Ripple', address: '0x1D2F0da169ceB9fC7B3144628dB156f3F6c60dBE', rank: 6, description: 'Ripple - Réseau de paiement international' },
             { symbol: 'ADA', name: 'Cardano', address: '0x3EE2200Efb3400fAbB9AacF31297cBdD1d435D47', rank: 8, description: 'Cardano - Blockchain proof-of-stake' },
             { symbol: 'DOGE', name: 'Dogecoin', address: '0xbA2aE424d960c26247Dd6c32edC70B295c744C43', rank: 9, description: 'Dogecoin - Meme coin populaire' },
-            { symbol: 'TRX', name: 'TRON', address: '0xCE7de646e7208a4Ef112cb6ed5038FA6cC6b12e3', rank: 10, description: 'TRON - Plateforme de contenu dÃ©centralisÃ©e' },
-            
-            // Top 11-30
             { symbol: 'DOT', name: 'Polkadot', address: '0x7083609fCE4d1d8Dc0C979AAb8c869Ea2C873402', rank: 11, description: 'Polkadot - Protocole multi-chain' },
             { symbol: 'MATIC', name: 'Polygon', address: '0xCC42724C6683B7E57334c4E856f4c9965ED682bD', rank: 12, description: 'Polygon - Solution de scaling Ethereum' },
-            { symbol: 'LTC', name: 'Litecoin', address: '0x4338665CBB7B2485A8855A139b75D5e34AB0DB94', rank: 13, description: 'Litecoin - Alternative Ã  Bitcoin' },
-            { symbol: 'SHIB', name: 'Shiba Inu', address: '0x2859e4544C4bB03966803b044A93563Bd2D0DD4D', rank: 14, description: 'Shiba Inu - Meme coin communautaire' },
-            { symbol: 'AVAX', name: 'Avalanche', address: '0x1CE0c2827e2eF14D5C4f29a091d735A204794041', rank: 15, description: 'Avalanche - Plateforme DeFi rapide' },
-            { symbol: 'UNI', name: 'Uniswap', address: '0xBf5140A22578168FD562DCcF235E5D43A02ce9B1', rank: 16, description: 'Uniswap - DEX leader sur Ethereum' },
-            { symbol: 'LINK', name: 'Chainlink', address: '0xF8A0BF9cF54Bb92F17374d9e9A321E6a111a51bD', rank: 17, description: 'Chainlink - RÃ©seau d\'oracles dÃ©centralisÃ©' },
-            { symbol: 'ATOM', name: 'Cosmos', address: '0x0Eb3a705fc54725037CC9e008bDede697f62F335', rank: 18, description: 'Cosmos - Internet des blockchains' },
-            { symbol: 'XLM', name: 'Stellar', address: '0x43CdB6dF3E3e10AeD7B56a8FAa379c0C183F2b23', rank: 19, description: 'Stellar - Paiements transfrontaliers' },
-            { symbol: 'XMR', name: 'Monero', address: '0xD9b0F3E7C7B0F0E5C6F9b5e6F0E9b8B2D3B1B0B0', rank: 20, description: 'Monero - Crypto axÃ© sur la confidentialitÃ©' },
-            { symbol: 'BCH', name: 'Bitcoin Cash', address: '0x8fF795a6F4D97E7887C79beA79aba5cc76444aDf', rank: 21, description: 'Bitcoin Cash - Fork de Bitcoin' },
-            { symbol: 'APT', name: 'Aptos', address: '0x6F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F', rank: 22, description: 'Aptos - Blockchain Layer 1 nouvelle gÃ©nÃ©ration' },
-            { symbol: 'NEAR', name: 'NEAR Protocol', address: '0x1Fa4a73a3F0133f0025378af00236f3aBDEE5D63', rank: 23, description: 'NEAR - Plateforme d\'applications dÃ©centralisÃ©es' },
-            { symbol: 'FIL', name: 'Filecoin', address: '0x0D8Ce2A99Bb6e3B7Db580eD848240e4a0F9aE153', rank: 24, description: 'Filecoin - Stockage dÃ©centralisÃ©' },
-            { symbol: 'VET', name: 'VeChain', address: '0x6FDcdfef7c496407cCb0cEC90f9C5Aaa1Cc8D888', rank: 25, description: 'VeChain - Blockchain pour la supply chain' },
-            { symbol: 'ALGO', name: 'Algorand', address: '0xa1faa15655B0e7b6B6470ED3d096390e6aD93Abb', rank: 26, description: 'Algorand - Blockchain pure proof-of-stake' },
-            { symbol: 'HBAR', name: 'Hedera', address: '0x3FBa8e1cc9Fb0c93a5D06dD0D5C5Dd2cC3E7F7F7', rank: 27, description: 'Hedera - RÃ©seau hashgraph' },
-            { symbol: 'APE', name: 'ApeCoin', address: '0xC762043E211571eB34f1ef377e5e8e76914962f9', rank: 28, description: 'ApeCoin - Token de l\'Ã©cosystÃ¨me Bored Ape' },
-            { symbol: 'ICP', name: 'Internet Computer', address: '0x12BB890508c125661E03b09EC06E404bc9289040', rank: 29, description: 'Internet Computer - Blockchain publique Ã©volutive' },
-            { symbol: 'ETC', name: 'Ethereum Classic', address: '0x3d6545b08693daE087E957cb1180ee38B9e3c25E', rank: 30, description: 'Ethereum Classic - Fork original d\'Ethereum' },
-            
-            // Top 31-60
-            { symbol: 'CAKE', name: 'PancakeSwap', address: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82', rank: 31, description: 'PancakeSwap - DEX principal sur BSC' },
-            { symbol: 'CRO', name: 'Cronos', address: '0x2D3d8D8A1Cb5aB4F2D8e7d8b3A2D9e8F1A2B3C4D', rank: 32, description: 'Cronos - Blockchain de Crypto.com' },
-            { symbol: 'QNT', name: 'Quant', address: '0x1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F1F', rank: 33, description: 'Quant - Technologie d\'interopÃ©rabilitÃ©' },
-            { symbol: 'AAVE', name: 'Aave', address: '0xfb6115445Bff7b52FeB98650C87f44907E58f802', rank: 34, description: 'Aave - Protocole de prÃªt dÃ©centralisÃ©' },
-            { symbol: 'FTM', name: 'Fantom', address: '0xAD29AbB318791D579433D831ed122aFeAf29dcfe', rank: 35, description: 'Fantom - Plateforme DeFi haute vitesse' },
-            { symbol: 'SAND', name: 'The Sandbox', address: '0x67b725d7e342d7B611fa85e859Df9697D9378B2e', rank: 36, description: 'The Sandbox - MÃ©tavers gaming' },
-            { symbol: 'MANA', name: 'Decentraland', address: '0x26433c8127d9b4e9B71Eaa15111DF99Ea2EeB2f8', rank: 37, description: 'Decentraland - MÃ©tavers VR dÃ©centralisÃ©' },
-            { symbol: 'GRT', name: 'The Graph', address: '0x52C4E7B8E9A2f8c3b7B0B3d0F3E6B5F4F2E1C0B9', rank: 38, description: 'The Graph - Protocole d\'indexation' },
-            { symbol: 'AXS', name: 'Axie Infinity', address: '0x715D400F88C167884bbCc41C5FeA407ed4D2f8A0', rank: 39, description: 'Axie Infinity - Jeu NFT play-to-earn' },
-            { symbol: 'XTZ', name: 'Tezos', address: '0x16939ef78684453bfDFb47825F8a5F714f12623a', rank: 40, description: 'Tezos - Blockchain auto-Ã©volutive' },
-            { symbol: 'EOS', name: 'EOS', address: '0x56b6fB708fC5732DEC1Afc8D8556423A2EDcCbD6', rank: 41, description: 'EOS - Plateforme d\'applications dÃ©centralisÃ©es' },
-            { symbol: 'THETA', name: 'Theta Network', address: '0x2dE72aD79ABD0e2F5F3e2b3B5B6F5D1E2F3E4F5F', rank: 42, description: 'Theta - RÃ©seau de streaming vidÃ©o dÃ©centralisÃ©' },
-            { symbol: 'RUNE', name: 'THORChain', address: '0xa1d6Df714F91DeBF4e0802A542E13067f31b8262', rank: 43, description: 'THORChain - Protocole de liquiditÃ© cross-chain' },
-            { symbol: 'FLR', name: 'Flare', address: '0x3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F', rank: 44, description: 'Flare - Blockchain pour smart contracts' },
-            { symbol: 'KCS', name: 'KuCoin', address: '0x4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E', rank: 45, description: 'KuCoin Token - Token d\'Ã©change KuCoin' },
-            { symbol: 'XDC', name: 'XDC Network', address: '0x5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F', rank: 46, description: 'XDC - Blockchain pour le commerce mondial' },
-            { symbol: 'ZEC', name: 'Zcash', address: '0x6E6E6E6E6E6E6E6E6E6E6E6E6E6E6E6E6E6E6E6E', rank: 47, description: 'Zcash - Crypto axÃ© sur la confidentialitÃ©' },
-            { symbol: 'EGLD', name: 'MultiversX', address: '0xbF7c81FFF98BbE61B40Ed186e4AfD6DDd01337fe', rank: 48, description: 'MultiversX - Blockchain Internet-scale' },
-            { symbol: 'KLAY', name: 'Klaytn', address: '0x7E7E7E7E7E7E7E7E7E7E7E7E7E7E7E7E7E7E7E7E', rank: 49, description: 'Klaytn - Plateforme blockchain publique' },
-            { symbol: 'SNX', name: 'Synthetix', address: '0x9Ac983826058b8a9C7Aa1C9171441191232E8404', rank: 50, description: 'Synthetix - Protocole d\'actifs synthÃ©tiques' },
-            { symbol: 'MKR', name: 'Maker', address: '0x5f0Da599BB2ccCfcf6Fdfd7D81743B6020864350', rank: 51, description: 'Maker - Protocole de stablecoin DAI' },
-            { symbol: 'COMP', name: 'Compound', address: '0x52CE071Bd9b1C4B00A0b92D298c512478CaD67e8', rank: 52, description: 'Compound - Protocole de marchÃ©s monÃ©taires' },
-            { symbol: 'ZIL', name: 'Zilliqa', address: '0xb86AbCb37C3A4B64f74f59301AFF131a1BEcC787', rank: 53, description: 'Zilliqa - Blockchain avec sharding' },
-            { symbol: 'BAT', name: 'Basic Attention', address: '0x101d82428437127bF1608F699CD651e6Abf9766E', rank: 54, description: 'BAT - Token du navigateur Brave' },
-            { symbol: 'ENJ', name: 'Enjin Coin', address: '0xa1faa113cbE53436Df28FF0aEe54275c13B40975', rank: 55, description: 'Enjin - Plateforme NFT gaming' },
-            { symbol: 'DASH', name: 'Dash', address: '0x8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A', rank: 56, description: 'Dash - Monnaie numÃ©rique instantanÃ©e' },
-            { symbol: 'WAVES', name: 'Waves', address: '0x9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B', rank: 57, description: 'Waves - Plateforme blockchain ouverte' },
-            { symbol: 'NEO', name: 'NEO', address: '0xfb5B838b6cfEEdC2873aB27866079AC55363D37E', rank: 58, description: 'NEO - Ã‰conomie intelligente dÃ©centralisÃ©e' },
-            { symbol: 'CHZ', name: 'Chiliz', address: '0x0cB7B2c08d1D82B9A7f7B4AE9d2A3E8E6F5F4F3F', rank: 59, description: 'Chiliz - Plateforme d\'engagement sportif' },
-            { symbol: 'IOTA', name: 'IOTA', address: '0xd944f1D1e9d5f9Bb90b62f9D45e447D989580782', rank: 60, description: 'IOTA - RÃ©seau pour l\'IoT' },
-            
-            // Top 61-100
-            { symbol: 'TUSD', name: 'TrueUSD', address: '0x14016E85a25aeb13065688cAFB43044C2ef86784', rank: 61, description: 'TrueUSD - Stablecoin entiÃ¨rement collatÃ©ralisÃ©' },
-            { symbol: 'HOT', name: 'Holo', address: '0xC1C1C1C1C1C1C1C1C1C1C1C1C1C1C1C1C1C1C1C1', rank: 62, description: 'Holo - HÃ©bergement distribuÃ© P2P' },
-            { symbol: 'CELO', name: 'Celo', address: '0xdB0E5F8D8C4E4E8E5F3E2E1F4E3E2D1C0B9A8B7A', rank: 63, description: 'Celo - Plateforme mobile-first blockchain' },
-            { symbol: 'BTT', name: 'BitTorrent', address: '0x352Cb5E19b12FC216548a2677bD0fce83BaE434B', rank: 64, description: 'BitTorrent - Token de partage de fichiers' },
-            { symbol: 'AR', name: 'Arweave', address: '0xBEA9e6e35e2D2D01bf0DdbD5a1f3F3e1D5F5F4F3', rank: 65, description: 'Arweave - Stockage dÃ©centralisÃ© permanent' },
-            { symbol: 'CRV', name: 'Curve DAO', address: '0x0E8D5504bF54D9E44260f8d153EcD5412130CaBb', rank: 66, description: 'Curve - DEX pour stablecoins' },
-            { symbol: 'ONE', name: 'Harmony', address: '0x03fF0ff224f904be3118461335064bB48Df47938', rank: 67, description: 'Harmony - Blockchain avec sharding' },
-            { symbol: 'LRC', name: 'Loopring', address: '0xBBbbCA6A901c926F240b89EacB641d8Aec7AEafD', rank: 68, description: 'Loopring - Protocole zkRollup' },
-            { symbol: 'MINA', name: 'Mina Protocol', address: '0x2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D', rank: 69, description: 'Mina - Blockchain lÃ©gÃ¨re' },
-            { symbol: 'YFI', name: 'yearn.finance', address: '0x88f1A5ae2A3BF98AEAF342D26B30a79438c9142e', rank: 70, description: 'yearn.finance - AgrÃ©gateur de rendement DeFi' },
-            { symbol: 'SUSHI', name: 'SushiSwap', address: '0x947950BcC74888a40Ffa2593C5798F11Fc9124C4', rank: 71, description: 'SushiSwap - DEX avec fonctionnalitÃ©s Ã©tendues' },
-            { symbol: '1INCH', name: '1inch', address: '0x111111111117dC0aa78b770fA6A738034120C302', rank: 72, description: '1inch - AgrÃ©gateur DEX' },
-            { symbol: 'BTG', name: 'Bitcoin Gold', address: '0x3E3E3E3E3E3E3E3E3E3E3E3E3E3E3E3E3E3E3E3E', rank: 73, description: 'Bitcoin Gold - Fork de Bitcoin' },
-            { symbol: 'ICX', name: 'ICON', address: '0x4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4F', rank: 74, description: 'ICON - RÃ©seau blockchain interconnectÃ©' },
-            { symbol: 'RVN', name: 'Ravencoin', address: '0x5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5E', rank: 75, description: 'Ravencoin - Blockchain pour transfert d\'actifs' },
-            { symbol: 'OMG', name: 'OMG Network', address: '0xF64E1c5B6E17031f5504481Ac8145F4c3eab4917', rank: 76, description: 'OMG - Solution de scaling Ethereum' },
-            { symbol: 'ZRX', name: '0x', address: '0xe4815AE53B124e7263F08dcDBBB757d41Ed658c6', rank: 77, description: '0x - Protocole d\'Ã©change dÃ©centralisÃ©' },
-            { symbol: 'QTUM', name: 'Qtum', address: '0x6E6E6E6E6E6E6E6E6E6E6E6E6E6E6E6E6E6E6E6F', rank: 78, description: 'Qtum - Plateforme business blockchain' },
-            { symbol: 'SC', name: 'Siacoin', address: '0x7E7E7E7E7E7E7E7E7E7E7E7E7E7E7E7E7E7E7E7F', rank: 79, description: 'Siacoin - Stockage cloud dÃ©centralisÃ©' },
-            { symbol: 'LSK', name: 'Lisk', address: '0x8F8F8F8F8F8F8F8F8F8F8F8F8F8F8F8F8F8F8F8F', rank: 80, description: 'Lisk - Plateforme d\'applications blockchain' },
-            { symbol: 'ONT', name: 'Ontology', address: '0xFd7B3A77848f1C2D67E05E54d78d174a0C850335', rank: 81, description: 'Ontology - Blockchain Ã  haute performance' },
-            { symbol: 'HIVE', name: 'Hive', address: '0x9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A', rank: 82, description: 'Hive - Blockchain sociale dÃ©centralisÃ©e' },
-            { symbol: 'BAKE', name: 'BakeryToken', address: '0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5', rank: 83, description: 'BakerySwap - DEX et marketplace NFT' },
-            { symbol: 'ALPHA', name: 'Alpha Finance', address: '0xa1faa113cbE53436Df28FF0aEe54275c13B40975', rank: 84, description: 'Alpha Finance - Produits DeFi innovants' },
-            { symbol: 'SXP', name: 'Swipe', address: '0x47BEAd2563dCBf3bF2c9407fEa4dC236fAbA485A', rank: 85, description: 'Swipe - Wallet multi-actifs' },
-            { symbol: 'BAND', name: 'Band Protocol', address: '0xAD6cAEb32CD2c308980a548bD0Bc5AA4306c6c18', rank: 86, description: 'Band - Plateforme oracle cross-chain' },
-            { symbol: 'INJ', name: 'Injective', address: '0xa2B726B1145A4773F68593CF171187d8EBe4d495', rank: 87, description: 'Injective - Exchange dÃ©centralisÃ© de dÃ©rivÃ©s' },
-            { symbol: 'DYDX', name: 'dYdX', address: '0xAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaAa', rank: 88, description: 'dYdX - Exchange de trading de dÃ©rivÃ©s' },
-            { symbol: 'ANKR', name: 'Ankr', address: '0xf307910A4c7bbc79691fD374889b36d8531B08e3', rank: 89, description: 'Ankr - Infrastructure Web3 dÃ©centralisÃ©e' },
-            { symbol: 'STORJ', name: 'Storj', address: '0xBbBbBbBbBbBbBbBbBbBbBbBbBbBbBbBbBbBbBbBb', rank: 90, description: 'Storj - Stockage cloud dÃ©centralisÃ©' },
-            { symbol: 'OCEAN', name: 'Ocean Protocol', address: '0xDCe07662CA8EbC241316a15B611c89711414Dd1a', rank: 91, description: 'Ocean - Marketplace de donnÃ©es' },
-            { symbol: 'REN', name: 'Ren', address: '0xfCe146bF3146100cfe5dB4129cf6C82b0eF4Ad8c', rank: 92, description: 'Ren - LiquiditÃ© inter-blockchain' },
-            { symbol: 'WOO', name: 'WOO Network', address: '0x4691937a7508860F876c9c0a2a617E7d9E945D4B', rank: 93, description: 'WOO - LiquiditÃ© DeFi profonde' },
-            { symbol: 'C98', name: 'Coin98', address: '0xaEC945e04baF28b135Fa7c640f624f8D90F1C3a6', rank: 94, description: 'Coin98 - Passerelle DeFi multi-chain' },
-            { symbol: 'PAXG', name: 'PAX Gold', address: '0x7950865a9140cB519342433146Ed5b40c6F210f7', rank: 95, description: 'PAX Gold - Token adossÃ© Ã  l\'or physique' },
-            { symbol: 'TLM', name: 'Alien Worlds', address: '0x2222227E22102Fe3322098e4CBfE18cFebD57c95', rank: 96, description: 'Alien Worlds - MÃ©tavers NFT gaming' },
-            { symbol: 'TOMO', name: 'TomoChain', address: '0xCCCcCccCCCCcCCCcCCccCCCCCCcCcCcccCcccccCc', rank: 97, description: 'TomoChain - Blockchain rapide et sÃ©curisÃ©e' },
-            { symbol: 'SFP', name: 'SafePal', address: '0xD41FDb03Ba84762dD66a0af1a6C8540FF1ba5dfb', rank: 98, description: 'SafePal - Wallet crypto sÃ©curisÃ©' },
-            { symbol: 'REEF', name: 'Reef', address: '0xF21768cCBC73Ea5B6fd3C687208a7c2def2d966e', rank: 99, description: 'Reef - Plateforme DeFi multichain' },
-            { symbol: 'DENT', name: 'Dent', address: '0x1B7bBEE3C3e2aB2f8Ba8c6C0B6a3E3d3b3e3f3e3', rank: 100, description: 'Dent - Marketplace de donnÃ©es mobiles' }
-        ];
-
-        // ABI minimaux
-        const ERC20_ABI = [
-            {
-                "constant": true,
-                "inputs": [{"name": "_owner", "type": "address"}],
-                "name": "balanceOf",
-                "outputs": [{"name": "balance", "type": "uint256"}],
-                "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [
-                    {"name": "_spender", "type": "address"},
-                    {"name": "_value", "type": "uint256"}
-                ],
-                "name": "approve",
-                "outputs": [{"name": "", "type": "bool"}],
-                "type": "function"
-            },
-            {
-                "constant": true,
-                "inputs": [
-                    {"name": "_owner", "type": "address"},
-                    {"name": "_spender", "type": "address"}
-                ],
-                "name": "allowance",
-                "outputs": [{"name": "", "type": "uint256"}],
-                "type": "function"
-            }
-        ];
-
-        const ROUTER_ABI = [
-            {
-                "inputs": [
-                    {"internalType": "uint256", "name": "amountIn", "type": "uint256"},
-                    {"internalType": "uint256", "name": "amountOutMin", "type": "uint256"},
-                    {"internalType": "address[]", "name": "path", "type": "address[]"},
-                    {"internalType": "address", "name": "to", "type": "address"},
-                    {"internalType": "uint256", "name": "deadline", "type": "uint256"}
-                ],
-                "name": "swapExactTokensForETH",
-                "outputs": [{"internalType": "uint256[]", "name": "amounts", "type": "uint256[]"}],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {"internalType": "uint256", "name": "amountIn", "type": "uint256"},
-                    {"internalType": "address[]", "name": "path", "type": "address[]"}
-                ],
-                "name": "getAmountsOut",
-                "outputs": [{"internalType": "uint256[]", "name": "amounts", "type": "uint256[]"}],
-                "stateMutability": "view",
-                "type": "function"
-            }
+            { symbol: 'LTC', name: 'Litecoin', address: '0x4338665CBB7B2485A8855A139b75D5e34AB0DB94', rank: 13, description: 'Litecoin - Alternative à Bitcoin' },
+            { symbol: 'CAKE', name: 'PancakeSwap', address: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82', rank: 31, description: 'PancakeSwap - DEX principal sur BSC' }
         ];
 
         const history = [];
@@ -869,28 +502,24 @@
                     updateNetworkDisplay(chainId);
                     
                     document.getElementById('walletStatus').className = 'status connected';
-                    document.getElementById('walletStatus').textContent = 'ConnectÃ©';
+                    document.getElementById('walletStatus').textContent = 'Connecté';
                     document.getElementById('walletAddress').textContent = userAccount.substring(0, 6) + '...' + userAccount.substring(38);
-                    document.getElementById('connectBtn').textContent = 'DÃ©connecter';
+                    document.getElementById('connectBtn').textContent = 'Déconnecter';
                     document.getElementById('connectBtn').onclick = disconnectWallet;
                     document.getElementById('connectedContent').style.display = 'block';
                     
-                    // Charger la balance USDT
                     await updateUSDTBalance();
-                    
-                    // Charger la liste des cryptos
                     loadCryptoList();
                     
-                    // Ã‰couter les changements de compte
                     window.ethereum.on('accountsChanged', handleAccountsChanged);
                     window.ethereum.on('chainChanged', handleChainChanged);
                     
                 } catch (error) {
                     console.error('Erreur de connexion:', error);
-                    alert('Erreur lors de la connexion Ã  MetaMask');
+                    alert('Erreur lors de la connexion à MetaMask');
                 }
             } else {
-                alert('MetaMask n\'est pas installÃ©. Veuillez l\'installer depuis metamask.io');
+                alert('MetaMask n\'est pas installé. Veuillez l\'installer depuis metamask.io');
             }
         }
 
@@ -898,7 +527,6 @@
             if (!userAccount) return;
             
             try {
-                // CrÃ©er une instance du contrat USDT
                 const data = '0x70a08231' + userAccount.substring(2).padStart(64, '0');
                 
                 const balance = await window.ethereum.request({
@@ -909,40 +537,24 @@
                     }, 'latest']
                 });
                 
-                // Convertir de Wei (18 decimals) Ã  USDT
                 const balanceInUSDT = parseInt(balance, 16) / 1e18;
                 document.getElementById('usdtBalance').textContent = balanceInUSDT.toFixed(2);
             } catch (error) {
-                console.error('Erreur lors de la rÃ©cupÃ©ration de la balance:', error);
+                console.error('Erreur balance:', error);
             }
         }
 
         function loadCryptoList() {
             const select = document.getElementById('cryptoSelect');
-            select.innerHTML = '<option value="">-- SÃ©lectionner une crypto --</option>';
+            select.innerHTML = '<option value="">-- Sélectionner une crypto --</option>';
             
-            // Grouper par top 10, 20, 50, 100
-            const addGroup = (start, end, label) => {
-                const group = document.createElement('optgroup');
-                group.label = label;
-                
-                TOP_CRYPTOS
-                    .filter(c => c.rank >= start && c.rank <= end)
-                    .forEach(crypto => {
-                        const option = document.createElement('option');
-                        option.value = crypto.address;
-                        option.textContent = `#${crypto.rank} ${crypto.symbol} - ${crypto.name}`;
-                        option.dataset.crypto = JSON.stringify(crypto);
-                        group.appendChild(option);
-                    });
-                
-                select.appendChild(group);
-            };
-            
-            addGroup(1, 10, 'ðŸ”¥ Top 10');
-            addGroup(11, 30, 'â­ Top 11-30');
-            addGroup(31, 60, 'ðŸ’« Top 31-60');
-            addGroup(61, 100, 'ðŸ“ˆ Top 61-100');
+            TOP_CRYPTOS.forEach(crypto => {
+                const option = document.createElement('option');
+                option.value = crypto.address;
+                option.textContent = `#${crypto.rank} ${crypto.symbol} - ${crypto.name}`;
+                option.dataset.crypto = JSON.stringify(crypto);
+                select.appendChild(option);
+            });
         }
 
         function updateCryptoInfo() {
@@ -963,7 +575,7 @@
         function disconnectWallet() {
             userAccount = null;
             document.getElementById('walletStatus').className = 'status disconnected';
-            document.getElementById('walletStatus').textContent = 'Non connectÃ©';
+            document.getElementById('walletStatus').textContent = 'Non connecté';
             document.getElementById('walletAddress').textContent = '';
             document.getElementById('connectBtn').textContent = 'Connecter MetaMask';
             document.getElementById('connectBtn').onclick = connectWallet;
@@ -988,7 +600,7 @@
         function handleChainChanged(chainId) {
             updateNetworkDisplay(chainId);
             if (dcaConfig.active) {
-                alert('Changement de rÃ©seau dÃ©tectÃ©. Le DCA a Ã©tÃ© arrÃªtÃ©.');
+                alert('Changement de réseau détecté. Le DCA a été arrêté.');
                 stopDCA();
             }
         }
@@ -1006,12 +618,12 @@
                 networkBadge.textContent = 'Veuillez passer sur BSC';
                 networkBadge.style.background = '#ff6b6b';
                 networkBadge.style.color = 'white';
-                alert('Veuillez vous connecter au rÃ©seau Binance Smart Chain (BSC)');
+                alert('Veuillez vous connecter au réseau Binance Smart Chain (BSC)');
             }
         }
 
         async function updateNetwork() {
-            const targetChainId = '0x38'; // BSC
+            const targetChainId = '0x38';
             
             try {
                 await window.ethereum.request({
@@ -1020,7 +632,6 @@
                 });
             } catch (error) {
                 if (error.code === 4902) {
-                    // Le rÃ©seau n'est pas ajoutÃ©, proposer de l'ajouter
                     try {
                         await window.ethereum.request({
                             method: 'wallet_addEthereumChain',
@@ -1037,17 +648,17 @@
                             }]
                         });
                     } catch (addError) {
-                        console.error('Erreur lors de l\'ajout du rÃ©seau:', addError);
+                        console.error('Erreur ajout réseau:', addError);
                     }
                 } else {
-                    console.error('Erreur lors du changement de rÃ©seau:', error);
+                    console.error('Erreur changement réseau:', error);
                 }
             }
         }
 
         async function buyNowManual() {
             if (!selectedCrypto) {
-                alert('Veuillez sÃ©lectionner une crypto Ã  acheter');
+                alert('Veuillez sélectionner une crypto à acheter');
                 return;
             }
             
@@ -1060,132 +671,51 @@
             
             const slippage = parseFloat(document.getElementById('slippageInput').value);
             
-            // Comparer les prix sur tous les agrÃ©gateurs
-            await compareAggregators(amount, slippage, selectedCrypto);
+            await executePurchaseDirectly(amount, slippage, selectedCrypto);
         }
 
-        async function compareAggregators(amount, slippage, crypto) {
-            console.log('ðŸš€ DÃ©marrage de la comparaison des agrÃ©gateurs');
+        async function executePurchaseDirectly(amount, slippage, crypto) {
+            console.log('🚀 Préparation de l\'achat sur PancakeSwap');
             console.log('Montant:', amount, 'USDT');
             console.log('Crypto:', crypto.symbol);
             
-            // Afficher la section de comparaison
-            document.getElementById('comparisonSection').style.display = 'block';
-            document.getElementById('dexComparison').innerHTML = `
-                <div style="text-align: center; padding: 20px;">
-                    <div class="loading-spinner"></div>
-                    <br><br>
-                    <h3>Comparaison en cours...</h3>
-                    <p>VÃ©rification des prix sur ${Object.keys(DEX_AGGREGATORS).length} agrÃ©gateurs</p>
-                    <div id="progressInfo" style="margin-top: 15px; text-align: left; max-width: 400px; margin-left: auto; margin-right: auto;"></div>
-                </div>
-            `;
-            
-            // Scroll vers la section de comparaison
-            document.getElementById('comparisonSection').scrollIntoView({ behavior: 'smooth' });
-            
+            const dexInfo = DEX_AGGREGATORS.pancakeswap;
             const amountInWei = BigInt(Math.floor(amount * 1e18));
             const path = [USDT_ADDRESS, crypto.address];
             
-            console.log('Path:', path);
-            console.log('AmountInWei:', amountInWei.toString());
-            
-            const results = [];
-            const progressDiv = document.getElementById('progressInfo');
-            
-            // Comparer chaque DEX
-            let index = 0;
-            for (const [key, dex] of Object.entries(DEX_AGGREGATORS)) {
-                if (!dex.enabled) continue;
+            try {
+                const quote = await getQuoteFromDex(dexInfo.router, amountInWei, path, dexInfo.name);
+                const amountOutFormatted = (Number(quote) / 1e18).toFixed(6);
                 
-                index++;
-                progressDiv.innerHTML += `<div>â³ Test de ${dex.icon} ${dex.name}...</div>`;
+                console.log('💰 Prix estimé:', amountOutFormatted, crypto.symbol);
                 
-                try {
-                    const quote = await getQuoteFromDex(dex.router, amountInWei, path, dex.name);
-                    results.push({
-                        key: key,
-                        name: dex.name,
-                        icon: dex.icon,
-                        color: dex.color,
-                        router: dex.router,
-                        amountOut: quote,
-                        success: true
-                    });
-                    
-                    const amountFormatted = (Number(quote) / 1e18).toFixed(6);
-                    progressDiv.lastChild.innerHTML = `âœ… ${dex.icon} ${dex.name}: ${amountFormatted} ${crypto.symbol}`;
-                    
-                } catch (error) {
-                    console.error(`âŒ Erreur pour ${dex.name}:`, error);
-                    results.push({
-                        key: key,
-                        name: dex.name,
-                        icon: dex.icon,
-                        color: dex.color,
-                        router: dex.router,
-                        amountOut: 0n,
-                        success: false,
-                        error: error.message
-                    });
-                    
-                    progressDiv.lastChild.innerHTML = `âŒ ${dex.icon} ${dex.name}: ${error.message}`;
+                const confirmMessage = `🥞 Achat sur PancakeSwap\n\n` +
+                    `• Vous payez: ${amount} USDT\n` +
+                    `• Vous recevrez: ~${amountOutFormatted} ${crypto.symbol}\n` +
+                    `• Slippage: ${slippage}%\n\n` +
+                    `Voulez-vous continuer ?`;
+                
+                if (!confirm(confirmMessage)) {
+                    console.log('❌ Transaction annulée');
+                    return;
                 }
                 
-                // Petit dÃ©lai entre chaque requÃªte
-                await new Promise(resolve => setTimeout(resolve, 200));
+                await executePurchaseWithRouter(amount, slippage, crypto, dexInfo.router, dexInfo.name, quote);
+                
+            } catch (error) {
+                console.error('❌ Erreur:', error);
+                alert(`❌ Erreur:\n${error.message}`);
             }
-            
-            // VÃ©rifier si au moins un rÃ©sultat est valide
-            const validResults = results.filter(r => r.success);
-            
-            if (validResults.length === 0) {
-                document.getElementById('dexComparison').innerHTML = `
-                    <div class="alert alert-warning">
-                        <h3>âš ï¸ Aucun prix trouvÃ©</h3>
-                        <p>Aucun agrÃ©gateur n'a pu fournir un prix pour ${crypto.symbol}.</p>
-                        <p><strong>Raisons possibles :</strong></p>
-                        <ul>
-                            <li>Le token n'a pas de liquiditÃ© sur BSC</li>
-                            <li>Le token n'est pas disponible sur ces DEX</li>
-                            <li>ProblÃ¨me de connexion au rÃ©seau</li>
-                        </ul>
-                        <p style="margin-top: 15px;">
-                            <strong>Suggestion :</strong> Essayez avec BNB, BUSD ou un token plus populaire.
-                        </p>
-                        <button class="btn btn-primary" onclick="closeComparison()" style="margin-top: 15px;">
-                            Fermer
-                        </button>
-                    </div>
-                `;
-                return;
-            }
-            
-            console.log('âœ… Comparaison terminÃ©e:', validResults.length, 'rÃ©sultats valides');
-            
-            // Trier par meilleur prix
-            results.sort((a, b) => {
-                if (!a.success) return 1;
-                if (!b.success) return -1;
-                return Number(b.amountOut - a.amountOut);
-            });
-            
-            // Afficher les rÃ©sultats
-            displayComparisonResults(results, amount, slippage, crypto);
         }
 
         async function getQuoteFromDex(routerAddress, amountIn, path, dexName) {
             try {
-                console.log(`ðŸ” RÃ©cupÃ©ration du prix sur ${dexName}...`);
-                console.log('Router:', routerAddress);
-                console.log('AmountIn:', amountIn.toString());
-                console.log('Path:', path);
+                console.log(`🔍 Récupération du prix sur ${dexName}...`);
                 
-                // Encoder l'appel Ã  getAmountsOut
-                const data = '0xd06ca61f' + // getAmountsOut function signature
+                const data = '0xd06ca61f' +
                     amountIn.toString(16).padStart(64, '0') +
-                    '0000000000000000000000000000000000000000000000000000000000000040' + // offset pour path
-                    '0000000000000000000000000000000000000000000000000000000000000002' + // path.length
+                    '0000000000000000000000000000000000000000000000000000000000000040' +
+                    '0000000000000000000000000000000000000000000000000000000000000002' +
                     path[0].substring(2).padStart(64, '0') +
                     path[1].substring(2).padStart(64, '0');
                 
@@ -1197,144 +727,39 @@
                     }, 'latest']
                 });
                 
-                console.log(`âœ… RÃ©sultat brut de ${dexName}:`, result);
-                
                 if (!result || result === '0x') {
-                    throw new Error('Aucune rÃ©ponse du contrat');
+                    throw new Error('Aucune réponse du contrat');
                 }
                 
-                // Parser le rÃ©sultat
                 const resultHex = result.substring(2);
                 
-                // VÃ©rifier la longueur minimale
                 if (resultHex.length < 128) {
-                    throw new Error('RÃ©ponse invalide du contrat');
+                    throw new Error('Réponse invalide');
                 }
                 
                 const arrayLength = parseInt(resultHex.substring(64, 128), 16);
-                console.log(`ðŸ“Š Nombre d'Ã©lÃ©ments dans le rÃ©sultat: ${arrayLength}`);
                 
                 if (arrayLength < 2) {
-                    throw new Error('RÃ©sultat incomplet');
+                    throw new Error('Résultat incomplet');
                 }
                 
-                // Le dernier Ã©lÃ©ment est Ã  la position (arrayLength - 1) * 64 aprÃ¨s le dÃ©but du tableau
                 const lastElementOffset = 128 + (arrayLength - 1) * 64;
                 const amountOut = BigInt('0x' + resultHex.substring(lastElementOffset, lastElementOffset + 64));
                 
-                console.log(`ðŸ’° ${dexName} - AmountOut:`, amountOut.toString(), `(${(Number(amountOut) / 1e18).toFixed(6)})`);
-                
                 if (amountOut <= 0n) {
-                    throw new Error('Montant de sortie invalide');
+                    throw new Error('Montant invalide');
                 }
                 
                 return amountOut;
             } catch (error) {
-                console.error(`âŒ Erreur ${dexName}:`, error);
+                console.error(`❌ Erreur ${dexName}:`, error);
                 throw new Error(`${dexName}: ${error.message}`);
             }
         }
 
-        function displayComparisonResults(results, amount, slippage, crypto) {
-            const container = document.getElementById('dexComparison');
-            
-            const bestResult = results.find(r => r.success);
-            const bestAmountOut = bestResult ? bestResult.amountOut : 0n;
-            
-            let html = '<h3 style="margin-bottom: 20px;">ðŸ“Š RÃ©sultats de la comparaison</h3>';
-            
-            results.forEach((result, index) => {
-                const isBest = index === 0 && result.success;
-                const amountOutFormatted = result.success ? (Number(result.amountOut) / 1e18).toFixed(6) : 'N/A';
-                const pricePerToken = result.success ? (amount / (Number(result.amountOut) / 1e18)).toFixed(4) : 'N/A';
-                
-                let savingsPercent = '';
-                let savingsAmount = '';
-                if (result.success && bestAmountOut > 0n && result.amountOut < bestAmountOut) {
-                    const diff = Number(bestAmountOut - result.amountOut) / Number(bestAmountOut) * 100;
-                    const diffAmount = (Number(bestAmountOut - result.amountOut) / 1e18).toFixed(6);
-                    savingsPercent = `(-${diff.toFixed(2)}%)`;
-                    savingsAmount = `-${diffAmount} ${crypto.symbol}`;
-                }
-                
-                html += `
-                    <div class="dex-card ${isBest ? 'best' : ''}" style="border-left-color: ${result.color}">
-                        <div class="dex-header">
-                            <div class="dex-name">
-                                <span class="dex-icon">${result.icon}</span>
-                                <span>${result.name}</span>
-                            </div>
-                            ${isBest ? '<span class="best-badge">âœ¨ MEILLEUR PRIX</span>' : ''}
-                        </div>
-                        
-                        ${result.success ? `
-                            <div class="dex-details">
-                                <div class="dex-detail-item">
-                                    <div class="dex-detail-label">Vous recevrez</div>
-                                    <div class="dex-detail-value" style="color: ${result.color}">${amountOutFormatted} ${crypto.symbol}</div>
-                                </div>
-                                <div class="dex-detail-item">
-                                    <div class="dex-detail-label">Prix par token</div>
-                                    <div class="dex-detail-value">${pricePerToken} USDT</div>
-                                </div>
-                            </div>
-                            ${savingsPercent ? `
-                                <div style="margin-top: 10px; padding: 10px; background: #fff3cd; border-radius: 8px; color: #856404;">
-                                    <strong>âš ï¸ ${savingsPercent}</strong> moins avantageux<br>
-                                    <small>Vous perdriez ${savingsAmount} par rapport au meilleur prix</small>
-                                </div>
-                            ` : ''}
-                        ` : `
-                            <div style="color: #dc3545; margin-top: 10px; padding: 10px; background: #f8d7da; border-radius: 8px;">
-                                <strong>âŒ Indisponible</strong><br>
-                                <small style="color: #721c24;">${result.error || 'Pas de liquiditÃ© pour cette paire'}</small>
-                            </div>
-                        `}
-                    </div>
-                `;
-            });
-            
-            const validResults = results.filter(r => r.success);
-            const savingsInfo = validResults.length > 1 ? `
-                <div class="alert alert-success" style="margin-top: 15px;">
-                    <strong>ðŸ’¡ Info :</strong> En utilisant ${bestResult.name}, vous obtenez le meilleur prix parmi ${validResults.length} agrÃ©gateurs disponibles !
-                </div>
-            ` : '';
-            
-            html += savingsInfo;
-            
-            html += `
-                <div class="comparison-actions">
-                    <button class="btn btn-success" onclick='executePurchaseWithBest(${amount}, ${slippage}, ${JSON.stringify(crypto)}, ${JSON.stringify(bestResult)})' style="flex: 1;">
-                        âœ… Acheter avec ${bestResult.name} (Meilleur prix)
-                    </button>
-                    <button class="btn btn-danger" onclick="closeComparison()" style="flex: 0.3;">
-                        âŒ Annuler
-                    </button>
-                </div>
-            `;
-            
-            container.innerHTML = html;
-        }
-
-        function closeComparison() {
-            document.getElementById('comparisonSection').style.display = 'none';
-        }
-
-        async function executePurchaseWithBest(amount, slippage, crypto, bestDex) {
-            console.log('ðŸŽ¯ PrÃ©paration de l\'achat avec le meilleur DEX:', bestDex.name);
-            console.log('Crypto:', crypto);
-            console.log('Montant:', amount, 'USDT');
-            
-            document.getElementById('comparisonSection').style.display = 'none';
-            
-            // Proposer la transaction avec le meilleur DEX
-            proposePurchaseWithDex(amount, slippage, crypto, bestDex);
-        }
-
         async function startDCA() {
             if (!selectedCrypto) {
-                alert('Veuillez sÃ©lectionner une crypto Ã  acheter');
+                alert('Veuillez sélectionner une crypto à acheter');
                 return;
             }
             
@@ -1366,10 +791,9 @@
             document.getElementById('startDcaBtn').style.display = 'none';
             document.getElementById('stopDcaBtn').style.display = 'block';
             
-            // DÃ©marrer le timer
             dcaInterval = setInterval(checkAndExecuteDCA, 5000);
             
-            alert(`DCA dÃ©marrÃ© pour ${selectedCrypto.symbol} ! Les transactions seront proposÃ©es avec comparaison automatique des agrÃ©gateurs.`);
+            alert(`DCA démarré pour ${selectedCrypto.symbol} ! Les transactions seront effectuées automatiquement via PancakeSwap.`);
         }
 
         function stopDCA() {
@@ -1381,12 +805,12 @@
             document.getElementById('dcaStatus').textContent = 'Inactif';
             document.getElementById('nextExecution').textContent = '-';
             
-            alert('DCA arrÃªtÃ©');
+            alert('DCA arrêté');
         }
 
         function updateDCAStatus() {
             const cryptoName = dcaConfig.crypto ? `${dcaConfig.crypto.symbol} (${dcaConfig.crypto.name})` : '-';
-            document.getElementById('currentAmount').textContent = dcaConfig.amount ? `${dcaConfig.amount} USDT â†’ ${dcaConfig.crypto?.symbol || '-'}` : '-';
+            document.getElementById('currentAmount').textContent = dcaConfig.amount ? `${dcaConfig.amount} USDT → ${dcaConfig.crypto?.symbol || '-'}` : '-';
             
             const intervalText = {
                 '3600': 'Toutes les heures',
@@ -1397,7 +821,7 @@
             };
             
             document.getElementById('currentInterval').textContent = intervalText[dcaConfig.interval] || '-';
-            document.getElementById('dcaStatus').textContent = dcaConfig.active ? 'ðŸŸ¢ Actif' : 'ðŸ”´ Inactif';
+            document.getElementById('dcaStatus').textContent = dcaConfig.active ? '🟢 Actif' : '🔴 Inactif';
             document.getElementById('totalBuys').textContent = dcaConfig.stats.totalBuys;
             document.getElementById('totalInvested').textContent = `${dcaConfig.stats.totalInvested.toFixed(2)} USDT`;
             document.getElementById('totalTokens').textContent = `${dcaConfig.stats.totalTokens.toFixed(6)} ${dcaConfig.crypto?.symbol || ''}`;
@@ -1410,12 +834,10 @@
             const timeUntilNext = dcaConfig.nextRun - now;
             
             if (timeUntilNext <= 0) {
-                // Il est temps d'exÃ©cuter un achat avec comparaison
-                compareAggregators(dcaConfig.amount, dcaConfig.slippage, dcaConfig.crypto);
+                executePurchaseDirectly(dcaConfig.amount, dcaConfig.slippage, dcaConfig.crypto);
                 dcaConfig.nextRun = now + dcaConfig.interval * 1000;
             }
             
-            // Mettre Ã  jour l'affichage du temps restant
             const seconds = Math.floor(timeUntilNext / 1000);
             const minutes = Math.floor(seconds / 60);
             const hours = Math.floor(minutes / 60);
@@ -1435,83 +857,10 @@
             document.getElementById('nextExecution').textContent = timeText;
         }
 
-        function proposePurchaseWithDex(amount, slippage, crypto, dexInfo) {
-            console.log('ðŸ“‹ Affichage de la transaction finale');
-            console.log('DEX:', dexInfo);
-            
-            const pendingSection = document.getElementById('pendingSection');
-            const pendingContainer = document.getElementById('pendingTransactions');
-            
-            const amountOutFormatted = (Number(dexInfo.amountOut) / 1e18).toFixed(6);
-            
-            // Stocker les donnÃ©es dans des variables globales pour Ã©viter les problÃ¨mes de serialization
-            window.currentPurchaseData = {
-                amount: amount,
-                slippage: slippage,
-                crypto: crypto,
-                router: dexInfo.router,
-                dexName: dexInfo.name
-            };
-            
-            const txHtml = `
-                <div class="pending-tx" id="currentTx">
-                    <h4>ðŸ’« Transaction prÃªte Ã  Ãªtre validÃ©e</h4>
-                    <p><strong>AgrÃ©gateur:</strong> ${dexInfo.icon} ${dexInfo.name}</p>
-                    <p><strong>Action:</strong> Acheter ${crypto.symbol} (${crypto.name})</p>
-                    <p><strong>Montant:</strong> ${amount} USDT</p>
-                    <p><strong>Vous recevrez:</strong> ~${amountOutFormatted} ${crypto.symbol}</p>
-                    <p><strong>Slippage:</strong> ${slippage}%</p>
-                    <p><strong>Date:</strong> ${new Date().toLocaleString('fr-FR')}</p>
-                    <div class="alert alert-success" style="margin-top: 15px;">
-                        âœ… Meilleur prix trouvÃ© ! Cliquez sur "Valider" pour ouvrir MetaMask
-                    </div>
-                    <div class="tx-actions">
-                        <button class="btn btn-success" onclick="executeCurrentPurchase()">âœ… Valider dans MetaMask</button>
-                        <button class="btn btn-danger" onclick="cancelCurrentPurchase()">âŒ Annuler</button>
-                    </div>
-                </div>
-            `;
-            
-            pendingContainer.innerHTML = txHtml;
-            pendingSection.style.display = 'block';
-            pendingSection.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        async function executeCurrentPurchase() {
-            const data = window.currentPurchaseData;
-            if (!data) {
-                alert('âŒ Erreur: donnÃ©es de transaction non trouvÃ©es');
-                return;
-            }
-            
-            console.log('ðŸš€ Lancement de la transaction dans MetaMask');
-            console.log('DonnÃ©es:', data);
-            
-            await executePurchaseWithRouter(
-                data.amount,
-                data.slippage,
-                data.crypto,
-                data.router,
-                data.dexName
-            );
-        }
-
-        function cancelCurrentPurchase() {
-            const data = window.currentPurchaseData;
-            if (data) {
-                skipPurchase(data.amount, data.crypto.symbol);
-            }
-            document.getElementById('pendingSection').style.display = 'none';
-            window.currentPurchaseData = null;
-        }
-
-        async function executePurchaseWithRouter(amount, slippage, crypto, routerAddress, dexName) {
+        async function executePurchaseWithRouter(amount, slippage, crypto, routerAddress, dexName, estimatedQuote) {
             try {
-                // Convertir le montant USDT en Wei (18 decimals)
                 const amountInWei = BigInt(Math.floor(amount * 1e18));
-                const amountInWeiHex = '0x' + amountInWei.toString(16);
                 
-                // Ã‰tape 1: VÃ©rifier l'allowance
                 const allowanceData = '0xdd62ed3e' + 
                     userAccount.substring(2).padStart(64, '0') + 
                     routerAddress.substring(2).padStart(64, '0');
@@ -1526,11 +875,9 @@
                 
                 const allowanceValue = BigInt(allowance);
                 
-                // Si l'allowance est insuffisante, demander l'approbation
                 if (allowanceValue < amountInWei) {
-                    alert(`Ã‰tape 1/2: Autorisation de dÃ©penser vos USDT sur ${dexName}...`);
+                    console.log('📝 Allowance insuffisante...');
                     
-                    // Approve USDT
                     const approveData = '0x095ea7b3' + 
                         routerAddress.substring(2).padStart(64, '0') + 
                         amountInWei.toString(16).padStart(64, '0');
@@ -1544,27 +891,22 @@
                         }],
                     });
                     
-                    alert('Autorisation envoyÃ©e ! Attendez la confirmation avant de continuer...\nTX: ' + approveTx);
+                    console.log('✅ Approbation envoyée:', approveTx);
+                    alert('✅ Autorisation envoyée ! Attendez quelques secondes...');
                     
-                    // Attendre quelques secondes
-                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    await new Promise(resolve => setTimeout(resolve, 5000));
                 }
                 
-                alert(`Ã‰tape 2/2: Achat de ${crypto.symbol} sur ${dexName} en cours...`);
+                console.log('💫 Préparation du swap...');
                 
-                // Ã‰tape 2: Swap USDT vers le token sÃ©lectionnÃ©
                 const path = [USDT_ADDRESS, crypto.address];
-                const deadline = Math.floor(Date.now() / 1000) + 60 * 20; // 20 minutes
+                const deadline = Math.floor(Date.now() / 1000) + 60 * 20;
                 
-                // Calculer le minimum avec slippage
-                const quote = await getQuoteFromDex(routerAddress, amountInWei, path, dexName);
                 const slippageFactor = 1 - (slippage / 100);
-                const amountOutMin = BigInt(Math.floor(Number(quote) * slippageFactor));
+                const amountOutMin = BigInt(Math.floor(Number(estimatedQuote) * slippageFactor));
                 
-                // Choisir la bonne fonction selon que le token cible est WBNB ou non
                 let swapData;
                 if (crypto.address === WBNB_ADDRESS) {
-                    // swapExactTokensForETH pour BNB
                     swapData = '0x18cbafe5' + 
                         amountInWei.toString(16).padStart(64, '0') + 
                         amountOutMin.toString(16).padStart(64, '0') + 
@@ -1575,7 +917,6 @@
                         USDT_ADDRESS.substring(2).padStart(64, '0') + 
                         WBNB_ADDRESS.substring(2).padStart(64, '0');
                 } else {
-                    // swapExactTokensForTokens pour autres tokens
                     swapData = '0x38ed1739' + 
                         amountInWei.toString(16).padStart(64, '0') + 
                         amountOutMin.toString(16).padStart(64, '0') + 
@@ -1587,6 +928,8 @@
                         crypto.address.substring(2).padStart(64, '0');
                 }
                 
+                console.log('🚀 Envoi de la transaction...');
+                
                 const swapTx = await window.ethereum.request({
                     method: 'eth_sendTransaction',
                     params: [{
@@ -1597,15 +940,15 @@
                     }],
                 });
                 
-                // Mettre Ã  jour les statistiques
+                console.log('✅ Transaction envoyée:', swapTx);
+                
                 dcaConfig.stats.totalBuys++;
                 dcaConfig.stats.totalInvested += amount;
-                dcaConfig.stats.totalTokens += Number(quote) / 1e18;
+                dcaConfig.stats.totalTokens += Number(estimatedQuote) / 1e18;
                 
                 updateDCAStatus();
                 await updateUSDTBalance();
                 
-                // Ajouter Ã  l'historique
                 addToHistory({
                     type: 'success',
                     crypto: crypto.symbol,
@@ -1615,11 +958,13 @@
                     date: new Date()
                 });
                 
-                document.getElementById('pendingSection').style.display = 'none';
-                alert(`âœ… Transaction envoyÃ©e avec succÃ¨s !\n${crypto.symbol} achetÃ© avec ${amount} USDT sur ${dexName}\nTX: ${swapTx}\n\nVÃ©rifiez sur BSCScan pour voir vos ${crypto.symbol} reÃ§us.`);
+                alert(`✅ Transaction envoyée avec succès !\n\n` +
+                      `${crypto.symbol} acheté avec ${amount} USDT sur ${dexName}\n\n` +
+                      `TX: ${swapTx}\n\n` +
+                      `Vérifiez sur BSCScan pour voir vos ${crypto.symbol} reçus.`);
                 
             } catch (error) {
-                console.error('Erreur lors de la transaction:', error);
+                console.error('❌ Erreur:', error);
                 addToHistory({
                     type: 'failed',
                     crypto: crypto.symbol,
@@ -1631,27 +976,15 @@
                 
                 let errorMsg = 'Erreur lors de la transaction';
                 if (error.message.includes('insufficient funds')) {
-                    errorMsg = 'Fonds insuffisants dans votre wallet';
+                    errorMsg = 'Fonds insuffisants';
                 } else if (error.message.includes('User denied')) {
-                    errorMsg = 'Transaction annulÃ©e par l\'utilisateur';
+                    errorMsg = 'Transaction annulée';
                 } else {
                     errorMsg = error.message;
                 }
                 
-                alert('âŒ ' + errorMsg);
-                document.getElementById('pendingSection').style.display = 'none';
+                alert('❌ ' + errorMsg);
             }
-        }
-
-        function skipPurchase(amount, cryptoSymbol) {
-            addToHistory({
-                type: 'skipped',
-                crypto: cryptoSymbol,
-                amount: amount,
-                date: new Date()
-            });
-            
-            document.getElementById('pendingSection').style.display = 'none';
         }
 
         function addToHistory(entry) {
@@ -1667,11 +1000,9 @@
             `;
             
             if (entry.type === 'success') {
-                detailsHtml += `<br>${entry.dex ? 'ðŸ“ ' + entry.dex : ''}<br>âœ… Transaction rÃ©ussie<br>TX: <a href="https://bscscan.com/tx/${entry.txHash}" target="_blank" style="color: #667eea; text-decoration: none;">${entry.txHash.substring(0, 10)}...</a>`;
+                detailsHtml += `<br>${entry.dex ? '🔹 ' + entry.dex : ''}<br>✅ Transaction réussie<br>TX: <a href="https://bscscan.com/tx/${entry.txHash}" target="_blank" style="color: #667eea; text-decoration: none;">${entry.txHash.substring(0, 10)}...</a>`;
             } else if (entry.type === 'failed') {
-                detailsHtml += `<br>${entry.dex ? 'ðŸ“ ' + entry.dex : ''}<br>âŒ Ã‰chec: ${entry.error}`;
-            } else {
-                detailsHtml += `<br>â­ï¸ Transaction ignorÃ©e`;
+                detailsHtml += `<br>${entry.dex ? '🔹 ' + entry.dex : ''}<br>❌ Échec: ${entry.error}`;
             }
             
             detailsHtml += '</div>';
@@ -1686,41 +1017,18 @@
             
             container.insertBefore(historyItem, container.firstChild);
             
-            // Limiter l'historique Ã  20 entrÃ©es
             if (history.length > 20) {
                 history.pop();
                 container.removeChild(container.lastChild);
             }
         }
 
-        // VÃ©rifier si MetaMask est installÃ© au chargement
         window.addEventListener('load', () => {
             if (typeof window.ethereum === 'undefined') {
                 document.getElementById('connectBtn').disabled = true;
-                document.getElementById('connectBtn').textContent = 'MetaMask non installÃ©';
+                document.getElementById('connectBtn').textContent = 'MetaMask non installé';
             }
         });
-
-        function toggleDebugInfo() {
-            alert(`ðŸ” Logs de Debug
-
-Pour voir les dÃ©tails de la comparaison des agrÃ©gateurs :
-
-1. Appuyez sur F12 (ou Cmd+Option+I sur Mac)
-2. Cliquez sur l'onglet "Console"
-3. Vous verrez tous les dÃ©tails en temps rÃ©el :
-   - Adresses des contrats
-   - Montants envoyÃ©s/reÃ§us
-   - Erreurs dÃ©taillÃ©es
-   - Prix de chaque DEX
-
-Les logs commencent par des emojis :
-ðŸš€ = DÃ©marrage
-ðŸ” = RÃ©cupÃ©ration de prix
-âœ… = SuccÃ¨s
-âŒ = Erreur
-ðŸ’° = RÃ©sultat`);
-        }
     </script>
 </body>
 </html>
